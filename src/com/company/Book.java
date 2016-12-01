@@ -27,9 +27,9 @@ public class Book implements Comparable<Book>{
     @Override
     public int compareTo(Book o) {
         if (this.getWeight() > o.getWeight()){
-            return -1;
-        }else if (this.getWeight() < o.getWeight()){
             return 1;
+        }else if (this.getWeight() < o.getWeight()){
+            return -1;
         }else{
             return 0;
         }

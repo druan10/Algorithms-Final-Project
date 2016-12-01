@@ -15,7 +15,6 @@ public class magicBox {
     public magicBox(){
     }
 
-
     public Book getBook(int index){
         return books.get(index);
     }
@@ -29,18 +28,10 @@ public class magicBox {
         return numOfBooks;
     }
 
-
-    //Sets currentBoxWeight to total weight of Books in list books
-    public void setBoxWeight(){
-        int total = 0;
-        Book currentBook;
-
-        for (int i = 0; i < books.size(); i++ ){
-            currentBook = books.get(i);
-            total += currentBook.getWeight();
-        }
-        currentBoxWeight = total;
+    public void updateBoxWeight(int addedWeight){
+        currentBoxWeight+=addedWeight;
     }
+
 
     //Returns currentBoxWeight
     public int getBoxWeight(){
@@ -50,17 +41,9 @@ public class magicBox {
 
     public void addBook(Book temp){
         books.add(temp);
+        numOfBooks++;
         //Updates currentBoxWeight with new book weight
-        setBoxWeight();
-        setnumOfBooks();
-    }
-
-    //Removes last Books object in books
-    public void removeLastBook(){
-        books.remove(books.size()-1);
-        //Updates currentBoxWeight without removed element
-        setBoxWeight();
-        setnumOfBooks();
+        updateBoxWeight(temp.getWeight());
     }
 
     public ArrayList currentBooks(){
