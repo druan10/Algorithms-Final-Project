@@ -1,20 +1,43 @@
 package com.company;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 
 public class Main{
 
     public static void main(String[] args) {
 
-        int numOfBooks;
-        int maxWeight;
+        int numOfBooks = 0;
+        int maxWeight = 0;
+        int [] bookWeights = {1};
+        File input = new File(args[0]);
+        File output = new File(args[1]);
 
-        numOfBooks = 12;
-        maxWeight = 22;
 
-        int [] bookWeights = {3,4,5,6,8,1,2,6,2,11,4,7};
-        //Arrays.sort(books);
+        try {
+            Scanner scan = new Scanner(new File(args[0]));
+
+            numOfBooks = scan.nextInt();
+            maxWeight = scan.nextInt();
+
+
+            bookWeights = new int [numOfBooks];
+
+            //Populates bookWeights with wieghts of books
+            for (int i = 0; i < numOfBooks; i++){
+                bookWeights[i] = scan.nextInt();;
+            }
+
+            scan.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         ArrayList<Book> totalbooks = new ArrayList<Book>();
 
@@ -46,7 +69,7 @@ public class Main{
             Boxes.add(newbox);
             currentBox = Boxes.get(Boxes.size() - 1);
 
-            //Iterates through totalbooks and adds the book with the greatest weight to the current box if it can deal with it
+            //Iterates through totalbooks and adds the book with the greatest weight to the current box the box can accomodate
             for (int i = 0; i < totalbooks.size(); i++){
                 if((currentBox.getBoxWeight() + totalbooks.get(i).getWeight()) <= maxWeight){
                         currentBox.addBook(totalbooks.get(i));
@@ -67,14 +90,23 @@ public class Main{
             bookstobeRemoved.clear();
         }
 
-        System.out.println(Boxes.size());
-        for (int i = 0; i < Boxes.size(); i++){
-            System.out.println(Boxes.get(i).getnumOfBooks());
-            for (int j = 0; j < Boxes.get(i).getnumOfBooks(); j++){
-                System.out.println (Boxes.get(i).getBook(j).getID());
-                //System.out.println (Boxes.get(i).getBook(j).getWeight());
-            }
 
+        //Prints magic boxes to output file
+        try {
+            PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+            writer.println(Boxes.size());
+            for (int i = 0; i < Boxes.size(); i++){
+                writer.println(Boxes.get(i).getnumOfBooks());
+                for (int j = 0; j < Boxes.get(i).getnumOfBooks(); j++){
+                    writer.println (Boxes.get(i).getBook(j).getID());
+                    //System.out.println (Boxes.get(i).getBook(j).getWeight());
+                }
+            }
+            writer.close();
         }
+        catch (Exception e) {
+                System.out.println(e.getLocalizedMessage());
+        }
+
     }
 }
