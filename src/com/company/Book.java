@@ -1,7 +1,7 @@
 package com.company;
 
 /**
- * Created by rshnbhatia on 11/29/16.
+ * Created by Roshan, Pim, and David on 11/29/16.
  */
 public class Book implements Comparable<Book>{
     int iD;
@@ -9,7 +9,7 @@ public class Book implements Comparable<Book>{
 
     public Book(int iD, int weight){
         this.iD = iD;
-        this.weight = weight;
+        this.weight = weight;s
 
     }
 
@@ -23,7 +23,7 @@ public class Book implements Comparable<Book>{
         return this.weight;
     }
 
-    //compareTo for Book, sorts in reverse order
+    //compareTo for Book
     @Override
     public int compareTo(Book o) {
         if (this.getWeight() > o.getWeight()){

@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 /**
- * Created by rshnbhatia on 11/29/16.
+ * Created by Roshan, Pim, and David on 11/29/16.
  */
 public class magicBox {
 
@@ -46,7 +46,7 @@ public class magicBox {
         updateBoxWeight(temp.getWeight());
     }
 
-    public ArrayList currentBooks(){
+    public ArrayList<Book> currentBooks(){
         return books;
     }
 }
